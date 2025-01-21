@@ -19,3 +19,8 @@ test("should return the sum of two numbers separated by a comma", () => {
 test("should handle new lines between numbers", () => {
 	expect(add("1\n2,3")).toBe(6);
 });
+
+// Test 5
+test("should support custom delimiters", () => {
+	expect(add("//;\n1;2")).toBe(3);
+});
