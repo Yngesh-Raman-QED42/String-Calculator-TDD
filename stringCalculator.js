@@ -1,11 +1,15 @@
 function add(numbers) {
 	if (numbers === "") return 0;
 
+	let multiply = false;
 	let delimiter = /,|\n/; // Default delimiters
 
 	// Check for custom delimiter
 	if (numbers.startsWith("//")) {
 		delimiter = numbers[2];
+		if (delimiter === "*") {
+			multiply = true;
+		}
 		numbers = numbers.slice(4);
 	}
 
@@ -19,7 +23,9 @@ function add(numbers) {
 	}
 
 	// Calculate the sum of numbers
-	return numArray.reduce((sum, num) => sum + num, 0);
+	return multiply
+		? numArray.reduce((sum, num) => sum * num, 1)
+		: numArray.reduce((sum, num) => sum + num, 0);
 }
 
 module.exports = { add };
